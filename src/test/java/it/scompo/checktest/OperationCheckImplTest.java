@@ -27,7 +27,17 @@ public class OperationCheckImplTest {
 	}
 
 	@Test
-	public  void testCheckOperation() {
+	public  void testCheckOperationOk() {
+		fail("Not yet implemented"); // TODO
+	}
+	
+	@Test
+	public  void testCheckOperation1Existent() {
+		fail("Not yet implemented"); // TODO
+	}
+	
+	@Test
+	public  void testCheckOperationMoreThan1Existent() {
 		fail("Not yet implemented"); // TODO
 	}
 

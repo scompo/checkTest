@@ -27,12 +27,22 @@ public class ObjectContainerImplTest {
 	}
 
 	@Test
-	public void testGetObjectById() {
+	public void testGetObjectByIdOk() {
+		fail("Not yet implemented"); // TODO
+	}
+	
+	@Test
+	public void testGetObjectByIdNotPresent() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetObjectByFields() {
+	public void testGetObjectByFieldsOk() {
+		fail("Not yet implemented"); // TODO
+	}
+	
+	@Test
+	public void testGetObjectByFieldsNotPresent() {
 		fail("Not yet implemented"); // TODO
 	}
 
