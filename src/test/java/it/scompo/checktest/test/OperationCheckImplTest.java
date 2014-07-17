@@ -1,44 +1,153 @@
 package it.scompo.checktest.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
+import it.scompo.checktest.ObjectContainer;
+import it.scompo.checktest.ObjectContainerImpl;
+import it.scompo.checktest.ObjectTest;
+import it.scompo.checktest.OperationCheck;
+import it.scompo.checktest.OperationCheckImpl;
+import it.scompo.checktest.exceptions.BadListException;
+import it.scompo.checktest.exceptions.MyExceptions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class OperationCheckImplTest {
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
+	private static final Long TEST_ID_1 = 1l;
+	private static final Long TEST_ID_2 = 2l;
+	private static final Long TEST_ID_3 = 3l;
+	
+	private static final String TEST_DATO_1_1 = "dato1_1";
+	private static final String TEST_DATO_2_1 = "dato2_1";
+	private static final String TEST_DATO_1_2 = "dato1_2";
+	private static final String TEST_DATO_2_2 = "dato2_2";
+	private static final String TEST_DATO_1_3 = "dato1_3";
+	private static final String TEST_DATO_2_3 = "dato2_3";
+	private static final Long ID_NOT_EXISTENT_IN_DATASET = 4l;
+	private static final String DATO_1_NOT_EXISTENT_IN_DATASET = "notex";
+	private static final String DATO_2_NOT_EXISTENT_IN_DATASET = "notex2";
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
+	private ObjectContainer container = null;
+
+	private ObjectTest object1 = null;
+	private ObjectTest object2 = null;
+	private ObjectTest object3 = null;
+	
+	private OperationCheck checker = null;
 
 	@Before
 	public void setUp() throws Exception {
+
+		container = new ObjectContainerImpl();
+
+		object1 = new ObjectTest(TEST_ID_1, TEST_DATO_1_1, TEST_DATO_2_1);
+		object2 = new ObjectTest(TEST_ID_2, TEST_DATO_1_2, TEST_DATO_2_2);
+		object3 = new ObjectTest(TEST_ID_3, TEST_DATO_1_3, TEST_DATO_2_3);
+
+		container.addObject(object1);
+		container.addObject(object2);
+		
+		checker = new OperationCheckImpl(container);
+
 	}
 
 	@After
 	public void tearDown() throws Exception {
+
+		object1 = null;
+		object2 = null;
+		object3 = null;
+		
+		container = null;
+		
+		checker = null;
 	}
 
 	@Test
-	public  void testCheckOperationOk() {
-		fail("Not yet implemented"); // TODO
+	public void testCheckOperationOkNotExistentInList() {
+		
+		List<ObjectTest> list = null;
+		ObjectTest single = null;
+		
+		list = new ArrayList<ObjectTest>();
+		list.add(object1);
+		list.add(object2);
+		
+		single = new ObjectTest(ID_NOT_EXISTENT_IN_DATASET, DATO_1_NOT_EXISTENT_IN_DATASET, DATO_2_NOT_EXISTENT_IN_DATASET);
+		
+		try {
+			checker.checkOperation(list, single);
+		} catch (MyExceptions e) {
+			fail("Exception: " + e);
+		}
+		
+	}
+		
+	@Test
+	public void testCheckOperationOk1ExistentInList() {
+		
+		List<ObjectTest> list = null;
+		ObjectTest single = null;
+		
+		list = new ArrayList<ObjectTest>();
+		list.add(object1);
+		list.add(object2);
+		
+		single = object1 ;
+		
+		try {
+			checker.checkOperation(list, single);
+		} catch (MyExceptions e) {
+			fail("Exception: " + e);
+		}
 	}
 	
 	@Test
-	public  void testCheckOperation1Existent() {
-		fail("Not yet implemented"); // TODO
+	public void testCheckOperationKo1ExistentOutList() {
+		
+		List<ObjectTest> list = null;
+		ObjectTest single = null;
+		
+		list = new ArrayList<ObjectTest>();
+		list.add(object1);
+		list.add(object2);
+		
+		single = object3 ;
+		
+		try {
+			checker.checkOperation(list, single);
+			fail("Exception not thrown");
+		} catch (BadListException e) {
+			
+		}
 	}
-	
+
+
 	@Test
-	public  void testCheckOperationMoreThan1Existent() {
-		fail("Not yet implemented"); // TODO
+	public void testCheckOperationMoreThan1ExistentInList() {
+		
+		List<ObjectTest> list = null;
+		ObjectTest single = null;
+		
+		list = new ArrayList<ObjectTest>();
+		
+		list.add(object1);
+		list.add(object2);
+		list.add(object2);
+		
+		single = object3 ;
+		
+		try {
+			checker.checkOperation(list, single);
+			fail("Exception not thrown");
+		} catch (BadListException e) {
+			
+		}
 	}
 
 }
