@@ -3,6 +3,7 @@ package it.scompo.checktest.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
+import static it.scompo.checktest.test.TestConstants.*;
 import it.scompo.checktest.ObjectContainer;
 import it.scompo.checktest.ObjectContainerImpl;
 import it.scompo.checktest.ObjectTest;
@@ -11,18 +12,16 @@ import it.scompo.checktest.exceptions.MissingIdException;
 import it.scompo.checktest.exceptions.MyExceptions;
 import it.scompo.checktest.exceptions.ObjectTestNotFoundException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 public class ObjectContainerImplTest {
 
-	private static final Long TEST_ID_1 = 1l;
-	private static final Long TEST_ID_2 = 2l;
-	private static final String TEST_DATO_1_1 = "dato1_1";
-	private static final String TEST_DATO_2_1 = "dato2_1";
-	private static final String TEST_DATO_1_2 = "dato1_2";
-	private static final String TEST_DATO_2_2 = "dato2_2";
+	final static Logger LOGGER = LogManager
+			.getLogger(ObjectContainerImplTest.class);
 
 	private static ObjectTest obj1 = null;
 	private static ObjectTest obj2 = null;
@@ -68,7 +67,8 @@ public class ObjectContainerImplTest {
 
 		assertNotNull(res);
 		assertEquals(obj2, res);
-
+		LOGGER.debug(PASSED_MESSAGE);
+		
 	}
 
 	@Test
@@ -80,9 +80,9 @@ public class ObjectContainerImplTest {
 
 		try {
 			container.addObject(object);
-			fail("Exception not thrown");
+			fail(EXCEPTION_NOT_THROWN_MESSAGE);
 		} catch (MissingIdException e) {
-
+			LOGGER.debug(PASSED_EXCEPTION_THROWN_MESSAGE, e);
 		}
 	}
 
@@ -93,9 +93,9 @@ public class ObjectContainerImplTest {
 
 		try {
 			container.addObject(obj1);
-			fail("Exception not thrown");
+			fail(EXCEPTION_NOT_THROWN_MESSAGE);
 		} catch (AlreadyExistentObjectTest e) {
-
+			LOGGER.debug(PASSED_EXCEPTION_THROWN_MESSAGE, e);
 		}
 	}
 
@@ -126,6 +126,7 @@ public class ObjectContainerImplTest {
 
 		assertNotNull(res);
 		assertEquals(obj2, res);
+		LOGGER.debug(PASSED_MESSAGE);
 	}
 
 	@Test
@@ -135,9 +136,9 @@ public class ObjectContainerImplTest {
 
 		try {
 			container.getObjectById(obj2.getId());
-			fail("Exception not thrown");
+			fail(EXCEPTION_NOT_THROWN_MESSAGE);
 		} catch (ObjectTestNotFoundException e) {
-
+			LOGGER.debug(PASSED_EXCEPTION_THROWN_MESSAGE, e);
 		}
 	}
 
@@ -168,6 +169,7 @@ public class ObjectContainerImplTest {
 
 		assertNotNull(res);
 		assertEquals(obj2, res);
+		LOGGER.debug(PASSED_MESSAGE);
 	}
 
 	@Test
@@ -177,9 +179,9 @@ public class ObjectContainerImplTest {
 
 		try {
 			container.getObjectByFields(obj2.getDato1(), obj2.getDato2());
-			fail("Exception not thrown");
+			fail(EXCEPTION_NOT_THROWN_MESSAGE);
 		} catch (ObjectTestNotFoundException e) {
-			
+			LOGGER.debug(PASSED_EXCEPTION_THROWN_MESSAGE, e);
 		}
 	}
 

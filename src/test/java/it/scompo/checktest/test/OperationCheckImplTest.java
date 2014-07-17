@@ -1,6 +1,7 @@
 package it.scompo.checktest.test;
 
 import static org.junit.Assert.*;
+import static it.scompo.checktest.test.TestConstants.*;
 import it.scompo.checktest.ObjectContainer;
 import it.scompo.checktest.ObjectContainerImpl;
 import it.scompo.checktest.ObjectTest;
@@ -13,25 +14,16 @@ import it.scompo.checktest.exceptions.ObjectTestNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 public class OperationCheckImplTest {
 
-	private static final Long TEST_ID_1 = 1l;
-	private static final Long TEST_ID_2 = 2l;
-	private static final Long TEST_ID_3 = 3l;
-
-	private static final String TEST_DATO_1_1 = "dato1_1";
-	private static final String TEST_DATO_2_1 = "dato2_1";
-	private static final String TEST_DATO_1_2 = "dato1_2";
-	private static final String TEST_DATO_2_2 = "dato2_2";
-	private static final String TEST_DATO_1_3 = "dato1_3";
-	private static final String TEST_DATO_2_3 = "dato2_3";
-	private static final Long ID_NOT_EXISTENT_IN_DATASET = 4l;
-	private static final String DATO_1_NOT_EXISTENT_IN_DATASET = "notex";
-	private static final String DATO_2_NOT_EXISTENT_IN_DATASET = "notex2";
+	final static Logger LOGGER = LogManager
+			.getLogger(OperationCheckImplTest.class);
 
 	private ObjectContainer container = null;
 
@@ -88,6 +80,8 @@ public class OperationCheckImplTest {
 		} catch (MyExceptions e) {
 			fail("Exception: " + e);
 		}
+		
+		LOGGER.debug(PASSED_MESSAGE);
 
 	}
 
@@ -108,6 +102,8 @@ public class OperationCheckImplTest {
 		} catch (MyExceptions e) {
 			fail("Exception: " + e);
 		}
+		
+		LOGGER.debug(PASSED_MESSAGE);
 	}
 
 	@Test
@@ -124,9 +120,10 @@ public class OperationCheckImplTest {
 
 		try {
 			checker.checkOperation(list, single);
-			fail("Exception not thrown");
+			fail(EXCEPTION_NOT_THROWN_MESSAGE);
 		} catch (BadListException e) {
 			assertEquals(OperationCheck.messageNotPresent ,e.getMessage());
+			LOGGER.debug(PASSED_EXCEPTION_THROWN_MESSAGE, e);
 		}
 	}
 
@@ -149,9 +146,9 @@ public class OperationCheckImplTest {
 
 		try {
 			checker.checkOperation(list, single);
-			fail("Exception not thrown");
+			fail(EXCEPTION_NOT_THROWN_MESSAGE);
 		} catch (ObjectTestNotFoundException e) {
-			
+			LOGGER.debug(PASSED_EXCEPTION_THROWN_MESSAGE, e);
 		}
 	}
 
@@ -171,9 +168,10 @@ public class OperationCheckImplTest {
 
 		try {
 			checker.checkOperation(list, single);
-			fail("Exception not thrown");
+			fail(EXCEPTION_NOT_THROWN_MESSAGE);
 		} catch (BadListException e) {
 			assertEquals(OperationCheck.messageDuplicate ,e.getMessage());
+			LOGGER.debug(PASSED_EXCEPTION_THROWN_MESSAGE, e);
 		}
 	}
 
