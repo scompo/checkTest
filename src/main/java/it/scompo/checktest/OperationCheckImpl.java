@@ -29,7 +29,7 @@ public class OperationCheckImpl implements OperationCheck {
 			single = container
 					.getObjectByFields(obj.getDato1(), obj.getDato2());
 		} catch (ObjectTestNotFoundException e) {
-			System.err.println("great It's not present!");
+			System.err.println("great it's not present!");
 		}
 
 		if (single != null) {
