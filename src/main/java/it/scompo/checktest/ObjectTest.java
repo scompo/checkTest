@@ -1,5 +1,11 @@
 package it.scompo.checktest;
 
+/**
+ * Test object!
+ * 
+ * @author mscomparin
+ *
+ */
 public class ObjectTest {
 
 	/**
