@@ -1,4 +1,4 @@
-package it.scompo.checktest;
+package it.scompo.checktest.test;
 
 import static org.junit.Assert.*;
 
@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class ObjectContainerImplTest {
+public class OperationCheckImplTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -27,22 +27,17 @@ public class ObjectContainerImplTest {
 	}
 
 	@Test
-	public void testGetObjectByIdOk() {
+	public  void testCheckOperationOk() {
 		fail("Not yet implemented"); // TODO
 	}
 	
 	@Test
-	public void testGetObjectByIdNotPresent() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testGetObjectByFieldsOk() {
+	public  void testCheckOperation1Existent() {
 		fail("Not yet implemented"); // TODO
 	}
 	
 	@Test
-	public void testGetObjectByFieldsNotPresent() {
+	public  void testCheckOperationMoreThan1Existent() {
 		fail("Not yet implemented"); // TODO
 	}
 
