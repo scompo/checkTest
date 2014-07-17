@@ -23,7 +23,7 @@ public class OperationCheckImpl implements OperationCheck {
 
 		ObjectTest single = null;
 
-		objectTestFromContainer = getFromList(objectsToTest);
+		objectTestFromContainer = getMapFromList(objectsToTest);
 
 		try {
 			single = container
@@ -41,7 +41,7 @@ public class OperationCheckImpl implements OperationCheck {
 
 	}
 
-	public Map<Long, ObjectTest> getFromList(List<ObjectTest> objectsToTest)
+	public Map<Long, ObjectTest> getMapFromList(List<ObjectTest> objectsToTest)
 			throws ObjectTestNotFoundException, BadListException {
 
 		Map<Long, ObjectTest> res = new LinkedHashMap<Long, ObjectTest>();
