@@ -67,8 +67,8 @@ public class ObjectContainerImplTest {
 
 		assertNotNull(res);
 		assertEquals(obj2, res);
-		LOGGER.debug(PASSED_MESSAGE);
-		
+		LOGGER.info(PASSED_MESSAGE);
+
 	}
 
 	@Test
@@ -82,7 +82,7 @@ public class ObjectContainerImplTest {
 			container.addObject(object);
 			fail(EXCEPTION_NOT_THROWN_MESSAGE);
 		} catch (MissingIdException e) {
-			LOGGER.debug(PASSED_EXCEPTION_THROWN_MESSAGE, e);
+			LOGGER.info(PASSED_EXCEPTION_THROWN_MESSAGE, e.getClass());
 		}
 	}
 
@@ -95,7 +95,7 @@ public class ObjectContainerImplTest {
 			container.addObject(obj1);
 			fail(EXCEPTION_NOT_THROWN_MESSAGE);
 		} catch (AlreadyExistentObjectTest e) {
-			LOGGER.debug(PASSED_EXCEPTION_THROWN_MESSAGE, e);
+			LOGGER.info(PASSED_EXCEPTION_THROWN_MESSAGE, e.getClass());
 		}
 	}
 
@@ -115,7 +115,7 @@ public class ObjectContainerImplTest {
 
 		assertNotNull(res);
 		assertEquals(obj1, res);
-		
+
 		res = null;
 
 		try {
@@ -126,7 +126,7 @@ public class ObjectContainerImplTest {
 
 		assertNotNull(res);
 		assertEquals(obj2, res);
-		LOGGER.debug(PASSED_MESSAGE);
+		LOGGER.info(PASSED_MESSAGE);
 	}
 
 	@Test
@@ -138,7 +138,7 @@ public class ObjectContainerImplTest {
 			container.getObjectById(obj2.getId());
 			fail(EXCEPTION_NOT_THROWN_MESSAGE);
 		} catch (ObjectTestNotFoundException e) {
-			LOGGER.debug(PASSED_EXCEPTION_THROWN_MESSAGE, e);
+			LOGGER.info(PASSED_EXCEPTION_THROWN_MESSAGE, e.getClass());
 		}
 	}
 
@@ -158,7 +158,7 @@ public class ObjectContainerImplTest {
 
 		assertNotNull(res);
 		assertEquals(obj1, res);
-		
+
 		res = null;
 
 		try {
@@ -169,7 +169,7 @@ public class ObjectContainerImplTest {
 
 		assertNotNull(res);
 		assertEquals(obj2, res);
-		LOGGER.debug(PASSED_MESSAGE);
+		LOGGER.info(PASSED_MESSAGE);
 	}
 
 	@Test
@@ -181,7 +181,7 @@ public class ObjectContainerImplTest {
 			container.getObjectByFields(obj2.getDato1(), obj2.getDato2());
 			fail(EXCEPTION_NOT_THROWN_MESSAGE);
 		} catch (ObjectTestNotFoundException e) {
-			LOGGER.debug(PASSED_EXCEPTION_THROWN_MESSAGE, e);
+			LOGGER.info(PASSED_EXCEPTION_THROWN_MESSAGE, e.getClass());
 		}
 	}
 

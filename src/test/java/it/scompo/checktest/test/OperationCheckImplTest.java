@@ -123,7 +123,7 @@ public class OperationCheckImplTest {
 			fail(EXCEPTION_NOT_THROWN_MESSAGE);
 		} catch (BadListException e) {
 			assertEquals(OperationCheck.messageNotPresent ,e.getMessage());
-			LOGGER.debug(PASSED_EXCEPTION_THROWN_MESSAGE, e);
+			LOGGER.info(PASSED_EXCEPTION_THROWN_MESSAGE, e.getClass());
 		}
 	}
 
@@ -148,7 +148,7 @@ public class OperationCheckImplTest {
 			checker.checkOperation(list, single);
 			fail(EXCEPTION_NOT_THROWN_MESSAGE);
 		} catch (ObjectTestNotFoundException e) {
-			LOGGER.debug(PASSED_EXCEPTION_THROWN_MESSAGE, e);
+			LOGGER.info(PASSED_EXCEPTION_THROWN_MESSAGE, e.getClass());
 		}
 	}
 
@@ -171,7 +171,7 @@ public class OperationCheckImplTest {
 			fail(EXCEPTION_NOT_THROWN_MESSAGE);
 		} catch (BadListException e) {
 			assertEquals(OperationCheck.messageDuplicate ,e.getMessage());
-			LOGGER.debug(PASSED_EXCEPTION_THROWN_MESSAGE, e);
+			LOGGER.info(PASSED_EXCEPTION_THROWN_MESSAGE, e.getClass());
 		}
 	}
 

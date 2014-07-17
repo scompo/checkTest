@@ -16,7 +16,7 @@ public abstract class TestConstants {
 	/**
 	 * Exception thrown message.
 	 */
-	public static final String PASSED_EXCEPTION_THROWN_MESSAGE = "Passed, exception thrown!";
+	public static final String PASSED_EXCEPTION_THROWN_MESSAGE = "Passed, exception thrown: {}";
 	
 	/**
 	 * Exception not thrown message.
